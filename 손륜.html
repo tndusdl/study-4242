@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="plus">+</button>
+    <button id="minus">-</button>
+    <button id="multiply">*</button>
+    <button id="divide">/</button>
+    <button id="modulo">%</button>
+
+   <script>
+    //덧셈
+    document.getElementById("plus").addEventListener("click", function() {
+    var one = prompt ("첫 번째 숫자를 입력하세요");
+    var two = prompt ("두 번째 숫자를 입력하세요");
+    var result = parseInt(one) + parseInt(two);
+    alert("덧셈 결과: " + result);
+    });
+
+   //뺄셈
+   document.getElementById("minus").addEventListener("click", function() {
+    var one = prompt ("첫 번째 숫자를 입력하세요");
+    var two = prompt ("두 번째 숫자를 입력하세요");
+    var result = parseInt(one) - parseInt(two);
+    alert("뺄셈 결과: " + result);
+   });
+
+   //곱셈
+   document.getElementById("multiply").addEventListener("click", function() {
+    var one = prompt ("첫 번째 숫자를 입력하세요");
+    var two = prompt ("두 번째 숫자를 입력하세요");
+    var result = parseInt(one) * parseInt(two);
+    alert("곱셈 결과: " + result);
+   });
+
+   //나눗셈
+   document.getElementById("divide").addEventListener("click", function() {
+    var one = prompt ("첫 번째 숫자를 입력하세요");
+    var two = prompt ("두 번째 숫자를 입력하세요");
+    var result = parseInt(one) / parseInt(two);
+    alert("나눗셈 결과: " + result);
+   });
+
+    //나머지
+    document.getElementById("modulo").addEventListener("click", function() {
+        var one = prompt ("첫 번째 숫자를 입력하세요");
+        var two = prompt ("두 번째 숫자를 입력하세요");
+        var result = parseInt(one) % parseInt(two);
+        alert("나머지 결과: " + result);
+       });
+   </script> 
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>quiz</title>
+</head>
+<style>
+    body {
+        font:bold;
+        background-color: #f4f4f4;
+        text-align: center;
+        padding: 50px;
+        
+    }
+
+    button {
+        background-color: forestgreen;
+        color: white;
+        padding: 10px 20px;
+        font-size: 16px;
+        border:none;
+        border-radius: 4px;
+    }
+</style>
+<body><h1>다음 중 어떤 것이 ㄱ일까요?</h1>
+    <button onclick="checkAnswer('o')">ㄱ</button>
+    <button onclick="checkAnswer('x')">ㄴ</button>
+    <div id="result" style="display: none;"></div>
+
+    <script>
+        function checkAnswer(answer) {
+            if (answer === 'o') {
+                document.getElementById('result').innerText = 'O';
+            } else {
+                document.getElementById('result').innerText = 'X';
+            }
+            document.getElementById('result').style.display = 'block';
+        }
+        </script>
+</body>
+</html>

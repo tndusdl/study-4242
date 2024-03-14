@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계산기</title>
+</head>
+<style>
+
+    /*큰 틀*/
+    .calculator {
+        width: 500px; /*가로 크기 지정*/
+        margin: 50px auto; /*바깥 여백 지정, auto=자동으로 너비 조정*/
+        border: 2px solid gray; /*테두리 선 두께*/
+        border-radius: 1px; /*테두리 둥근 쪽*/
+        padding: 50px; /*내부 여백 지정*/
+    }
+
+    /*첫번째 0*/
+    .display {
+        width:100%; /*0 위치 옮기기*/
+        text-align:right; /* 텍스트를 오른쪽으로 정렬 */ 
+        line-height: 40px; /*텍스트 0 회색 칸 간격 설정*/
+    }
+
+    /*버튼*/
+    .buttons {
+        display:flex; /*기본 설정*/
+        justify-content: space-evenly; /*컨텐츠 배치 기준*/
+    }
+
+    /*버튼 숫자*/
+    .buttons button {
+        width:100px;
+        margin:1px auto;
+        padding: 10px;
+        line-height: 20px;
+    }
+</style>
+<body>
+    <div class="calculator">
+        <div class="display">0</div>
+        <div class="buttons">
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button>+</button>
+        </div>
+    <div class="buttons">
+        <button>6</button>
+        <button>5</button>
+        <button>4</button>
+        <button>-</button>
+    </div>
+    <div class="buttons">
+        <button>3</button>
+        <button>2</button>
+        <button>1</button>
+        <button>*</button>
+    </div>
+    <div class="buttons">
+        <button>0</button>
+        <button>.</button>
+        <button>/</button>
+    </div>
+    <div class="buttons">
+        <button>=</button>
+    </div>
+    </div>
+</body>
+</html>

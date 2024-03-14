@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .input-text-lable {
+        font-weight: bold;
+        min-width: 100px;
+    }
+
+    input[type="password"]
+    input[type="number"]
+    input[type="text"] {
+        width: 50%;
+        height: 38px;
+        line-height: 38px;
+        padding: 5px;
+        border-radius: 3px;
+        box-shadow: 0 0 3px rgba(40, 40, 0.2);
+        border: none;
+        font-size: 14px;
+    }
+
+    /*그냥 a태그는 아무것도 없는 input #a .a 
+    ,:or ][:and ㄴ:하위*/
+
+    .input-text-default-line {
+        border: 1px solid #333 !important;
+    }
+
+
+</style>
+<body>
+    
+    <label for="email" class="input-text-lable">
+    Default-line</label>
+    <input type="text" class="input-text-lable">
+        Default-line</input>
+</body>
+</html>

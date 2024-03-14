@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rainbowcolor</title>
+</head>
+<body>
+    <h3>무지개의 4번째 색은 뭘까요?</h3>
+    <button onclick="selectColor();">정답!!!</button>
+</body>
+<script>
+    //Q1. 정답 버튼을 눌렀을 때 무지개의 4번째 색인 green이 alert 창에 뜨게 하기 
+    function selectColor() {
+        var color = 4;
+        var colorName;
+
+        switch (color) {
+            case 1:
+            colorName = 'Red';
+            break;
+
+            case 2:
+            colorName = 'Orange';
+            break;
+
+            case 3:
+            colorName = 'Yellow';
+            break;
+
+            case 4:
+            colorName = 'Green';
+            break;
+
+            case 5:
+            colorName = 'Blue';
+            break;
+
+            case 6:
+            colorName = 'Deepblue';
+            break;
+
+            case 7:
+            colorName = 'Purple';
+            break;
+            
+            default:
+            colorName = NaN;
+        }
+        //문자열로 된 colorName을 alert창에 띄우는 코드
+        alert(colorName);
+        //Q2.colorName 글자수의 짝/홀수를 감별하는 코드의 빈칸 채우기
+        if (typeof colorName === 'string') { //문자열이 아닌 것은 글자수를 판별할 수 없게 함
+            if (colorName.length % 2 === 0) { // 2로 나눈 후의 나머지가 0인지를 확인 (짝수인지 검사)
+            alert(colorName + '의 글자수는 짝수입니다');
+        }  else {
+            alert(colorName + '의 글자수는 홀수입니다');
+        } 
+    }else {
+        alert('try again')
+    }
+}
+</script>
+</html>
