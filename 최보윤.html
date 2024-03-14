@@ -12,10 +12,6 @@
     }
     #inputMonth {
         width: 40px;
-        height: 20px;ㅁ
-    }
-    #result {
-        width: 100px;
         height: 20px;
     }
 </style>
@@ -41,7 +37,7 @@ alert(month + '월은 여름입니다');
     } else if (month >= 9 && month <= 11) {//가을
 document.body.style.backgroundColor = '#ffead8';
 alert(month + '월은 가을입니다');
-    } else if (month == 12 || month <= 2) {//겨울
+    } else if (month == 12 || month == 2|| month==1) {//겨울
 document.body.style.backgroundColor = '#e6f4fa';
 alert(month + '월은 겨울입니다');
     } else {
