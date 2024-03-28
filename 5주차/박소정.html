@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로필 만들기</title>
+    <style>
+        .main {
+            width: 400px;
+            display:flex;
+            justify-content: space-evenly;
+        }
+
+        .profil {
+            text-align: center;
+        }
+
+        h1 {
+            margin:0px;
+        }
+
+        .box {
+            width:240px;
+            height:300px;
+            border:4px solid black;
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
+        .name, .age, .hobby, .color {
+            font-size: 20px;
+            font-weight: 700;
+            display: none;
+        }
+        
+        .plus, .minus {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
+
+        button {
+            width:70px;
+            height:40px;
+        }
+
+        h2 {
+            text-align: center;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="profil">
+            <h1>프로필</h1>
+            <div class="box">
+                <div class="name">이주연</div>
+                <div class="age">27살</div>
+                <div class="hobby">수øㅕLI 짝バr己б㈛ブl...//</div> 
+                <div class="color">파란색</div>
+            </div>
+        </div>
+        <div class="plus">
+            <h2>추가</h2>
+            <button class="p_name">이름</button>
+            <button class="p_age">나이</button>
+            <button class="p_hobby">취미</button>
+            <button class="p_color">색</button>
+        </div>
+        <div class="minus">
+            <h2>삭제</h2>
+            <button class="m_name">이름</button>
+            <button class="m_age">나이</button>
+            <button class="m_hobby">취미</button>
+            <button class="m_color">색</button>
+         </div>
+    </div>
+
+    <script>
+        // 이름 추가 버튼
+        document.querySelector('.p_name').addEventListener('click', function() {
+            document.querySelector('.name').style.display = 'block';
+            console.log(personalbar.name);
+        });
+
+        // 나이 추가 버튼
+        document.querySelector('.p_age').addEventListener('click', function() {
+            document.querySelector('.age').style.display = 'block';
+            console.log(personalbar.age);
+        });
+
+        // 취미 추가 버튼
+        document.querySelector('.p_hobby').addEventListener('click', function() {
+            document.querySelector('.hobby').style.display = 'block';
+            console.log(personalbar.hobby);
+        });
+
+        // 색 추가 버튼
+        document.querySelector('.p_color').addEventListener('click', function() {
+            document.querySelector('.color').style.display = 'block';
+            console.log(personalbar.color);
+        });
+
+        // 이름 삭제 버튼
+        document.querySelector('.m_name').addEventListener('click', function() {
+            document.querySelector('.name').style.display = 'none';
+        });
+
+        // 나이 삭제 버튼
+        document.querySelector('.m_age').addEventListener('click', function() {
+            document.querySelector('.age').style.display = 'none';
+        });
+
+        // 취미 삭제 버튼
+        document.querySelector('.m_hobby').addEventListener('click', function() {
+            document.querySelector('.hobby').style.display = 'none';
+        });
+
+        // 색 삭제 버튼
+        document.querySelector('.m_color').addEventListener('click', function() {
+            document.querySelector('.color').style.display = 'none';
+        });
+    </script>
+</body>
+</html>

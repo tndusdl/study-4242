@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>심리테스트</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            color:#333;
+        }
+        #question {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        #result {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>심리테스트</h1>
+    <p id="question"></p>
+    <button onclick="answerQuestion(true)">예</button>
+    <button onclick="answerQuestion(false)">아니오</button>
+    <p id="result"></p>
+
+    <script>
+        var currentQuestionIndex = 0;
+        var questions = [
+            {question: "질문1", answer:true},
+            {question: "질문2", answer:true},
+            {question: "질문3", answer:true},
+    ];
+
+    function displayQuestion() {
+        document.getElementById("question").textContent = questions[currentQuesuionIndex].question;
+     }
+
+     function answerQuestion(userAnswer) {
+        if (userAnswer === questions[currentQuesuionIndex].answer) {
+            document.getElementById("result").textContent = "당신은 이 유형입니다.";
+        } else {
+            document.getElementById("result").textContent = "당신은 이 유형입니다.";
+        }
+     }
+    </script>
+</body>
+</html>

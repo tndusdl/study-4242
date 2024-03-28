@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메모 만들기</title>
+    <style>
+        .container {
+            width: 400px;
+            height: 500px;
+            background-color: #dbddf9;
+            padding: 10px;
+            text-align: center;
+          }
+    
+          input {
+            text-align: center;
+            width: 250px;
+            height: 30px;
+            font-size: 17px;
+          }
+    
+          button {
+            width: 50px;
+            height: 33px;
+          }
+    
+          #list {
+            text-align: left;
+            font-size: 17px;
+          }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>오늘의 할 일</h3>
+        <input type="text" id="todoInput" placeholder="오늘의 할 일을 입력하세요">
+        <button onclick="addTodo()">추가</button>
+        <ul id="todoList"></ul>
+    </div>
+
+    <script>
+        function addTodo() {
+            // 입력된 할 일을 가져오긔
+            var todoText = document.getElementById("todoInput").value.trim();
+
+            // 입력된 내용이 비어있으면 아무 작업도 수행하지 않긔
+            if (todoText === "") {
+                alert("헐 일을 입력하쉐이");
+                return;
+            } else {
+            // 새로운 리스트 아이템을 생성
+            var li = document.createElement("ul");
+            li.textContent = todoText;
+
+            // 할 일 목록에 새로운 리스트 아이템 추가
+            document.getElementById("todoList").appendChild(li);
+
+            // 입력 창 비우기
+            document.getElementById("todoInput").value = "";
+            }
+
+        }
+    </script>
+</body>
+</html>

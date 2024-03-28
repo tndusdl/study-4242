@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메모</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lightgoldenrodyellow;
+            margin: 0;
+            padding:0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 600px;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        textarea {
+            width: 300px;
+            height: 200px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            resize: none;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #f8ff6c;
+            color: rgb(27, 125, 0);
+            border: none;
+
+        }
+    </style>
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>오늘의 할 일</h3>
+        <textarea id="todoInput" placeholder="오늘의 할 일을 입력하세요"></textarea>
+        <button onclick="addTodo()">추가</button>
+        <ul id="todoList"></ul>
+    </div>
+
+    <script>
+        // 문제1. 사용자가 입력한 메모를 가져와서 저장하면 메모가 저장되었다는 경고창을 표시함.
+        function savememo() {
+            var memoText = document.getElementById("todoInput").value.trim();
+            if (memoText === "") {
+                alert("메모를 입력하세요.");
+                return;
+            }
+            alert("메모가 저장되었습니다.");
+        }
+
+        // 문제2. id가 todoInput인 입력 요소의 값을 빈 문자열로 설정하여 입력된 메모를 지움
+        function ClearMemo() {
+            document.getElementById("todoInput").value = "";
+        }
+
+        // addTodo 함수는 아직 정의되지 않았으므로 임시로 비워둠
+        function addTodo() {
+            // 할 일을 추가하는 기능을 구현해야 함
+        }
+    </script>
+</body>
+</html>
