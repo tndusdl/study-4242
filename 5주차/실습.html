@@ -78,12 +78,13 @@
     </div>
     <div class="buttons">
         <button id="calculate" onclick="calculate()">=</button>
+        <button id="reset" onclick="reset()">C</button>
     </div>
     </div>
     <script>
         const display = document.querySelector('.display');
         let currentValue = '0';
-        let pendingOperation = null;
+        
         //숫자 버튼 누를 떄
         function numdisplay(value) {
             if (currentValue === '0') {
@@ -95,11 +96,7 @@
         }
          //연산자 기호 버튼 누를 떄
         function symbol(operation) {
-            if (pendingOperation !== null) {
-                calculate();
-            }
             currentValue += operation;
-            pendingOperation = operation;
         }
         // 계산 버튼 누를 때
         function calculate() {
@@ -107,16 +104,15 @@
     
         // 계산 실행
         const result = safeCalculation();
-        display.textContent = result;
         currentValue = result.toString();
         pendingOperation = null;
+        display.textContent = result;
         }
 
-        document.addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                calculate();
-            }
-        });
+        function reset(){
+            result="";
+            currentValue="";
+        }
     </script>
 </body>
 </html>
