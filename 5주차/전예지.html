@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체 리터럴을 활용한 학생 정보</title>
+</head>
+<body>
+    <div id="studentInfo"></div>
+
+    <script>
+        //프로필 정보
+        const students = [
+            {
+                이름:'이주연',
+                나이: 27,
+                정보: {
+                    키: 180,
+                    시력: 2.0,
+                },
+                좋아하는활동: ['농구하기', '수여니랑 영화보긔..//'],
+                성별: '남성'
+            },
+            {
+                이름:'김영훈',
+                나이: 28,
+                정보: {
+                    키: 185,
+                    시력: 0.5,
+                },
+                좋아하는활동: ['영화보기', '수여니랑 틱톡찍긔...//'],
+                성별: '남성'
+            },
+            {
+                이름:'이재현',
+                나이: 28,
+                정보: {
+                    키: 180,
+                    시력: 1.2,
+                },
+                좋아하는활동: ['노래듣기', '수여니랑 게임하긔...//'],
+                성별: '남성'
+            },
+        ];
+
+        // 학생 정보를 화면에 표시하는 함수
+        function displayStudentsInfo(students) {
+            //학생 정보를 표시할 컨테이너 div 요소 가져옴 
+            const studentInfoContainer = document.getElementById('studentInfo');
+            //프로필 정보 화면에 표시
+            students.forEach(function(student) {
+                // 프로필 정보를 담을 요소 생성
+                const studentInfo = document.createElement('div');
+                studentInfo.innerHTML = `
+                    <h2>이름: ${student.이름}</h2>
+                    <p>나이: ${student.나이}</p>
+                    <p>키: ${student.정보.키}</p>
+                    <p>시력: ${student.정보.시력}</p>
+                    <p>좋아하는 활동: ${student.좋아하는활동.join(', ')}</p>
+                    <p>성별: ${student.성별}</p>
+                `;
+                studentInfoContainer.appendChild(studentInfo);
+            });
+        }
+
+        // 학생 정보 표시
+        window.onload = function() {
+            displayStudentsInfo(students);
+        };
+    </script>
+</body>
+</html>
