@@ -44,10 +44,6 @@ function result() {
     // 선택된 숫자를 selectedNumbers 배열에 추가
     selectedNumbers.push(selectedNumber);
 }
-
-
-    
-
     // 화면에 로또 번호 출력
     var lottoNumbersText = selectedNumbers.join(', ');
     document.getElementById('lottoNumbers').textContent = "추첨된 로또 번호: " + lottoNumbersText;
