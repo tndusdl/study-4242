@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Runners Literal</title>
+  <style>
+    body{
+      background-color: rgb(255, 255, 147);
+    }
+    button{
+      width: 90px; height: 80px;
+    }
+    #inputYear{
+      border: 1px solid black;
+      width: 250px;
+    }
+  </style>
+</head>
+<br>
+  <button onclick="winner()">수상자 이력 검색</button>
+  <input type="text" id="inputYear" placeholder="검색하고 싶으신 연도를 입력하세요">
+  <button onclick="ageAvg()">선수들 평균나이는?</button><br>
+  <textarea id="textarea" cols="20" rows="10" readonly></textarea>
+  
+  
+  <script>
+    const runningArr = [
+    {name: '김윤수', age: '17', year: 2023,
+    moto: "항상..최선을 다합니다..!"},
+    {name: '이지예', age: '18', year: 2022,
+      moto: "우승은 내꺼이지예"},
+    {name: '김첨지', age: '21', year: 2021,
+      moto: "운수가 좋은 날이네요~"},
+    {name: '오타니', age: '29', year: 2020,
+      moto: "전 달리기도 잘합니다"},
+    ]
+
+    //Q1)input에 숫자를 입력받아 그에 따른 수상자 정보 내보내기
+    function winner() {
+      let year = document.querySelector('#inputYear').value;
+      let output = '';
+      let found = false;
+
+    // 입력한 연도와 일치하는 수상자 찾기
+   runningArr.forEach(runner => {
+    // 주의: 문자열 비교를 위해 '==' 사용
+    if (runner.year == year) { 
+     // 수상자 정보를 JSON 문자열로 변환하여 결과에 추가
+      output += JSON.stringify(runner) + '\n';
+      found = true; // 수상자를 찾았음을 표시
+    }
+  });
+
+  
+    // 입력한 연도와 일치하는 수상자 찾기
+    for (let i = 0; i < runningArr.length; i++) {
+    // 문자열 비교를 위해 '==' 사용함
+    if (runningArr[i].year == year) { 
+    // 수상자 정보를 JSON 문자열로 변환하여 결과에 추가
+      output += JSON.stringify(runningArr[i]) + '\n'; 
+      // 수상자를 찾았음을 표시하기
+      found = true; 
+    }
+  }
+
+  // 결과를 textarea에 출력하거나 해당 연도의 수상자가 없는 경우 경고 메시지 출력
+  if (found) {
+    document.getElementById('textarea').value = output;
+  } else {
+    alert("연도를 다시 입력해주세요.");
+  }
+}
+
+
+    //Q2)선수들의 나이 평균값 내기
+      function ageAvg() {
+      let totalAge = 0;
+    // 모든 선수들의 나이 총합 계산
+    runningArr.forEach(runner => {
+    totalAge += parseInt(runner.age);
+    });
+            
+    // 평균 나이 계산
+    let averageAge = totalAge / runningArr.length;
+            
+    // 결과를 알림창에 표시
+    alert("선수들의 평균나이는 " + averageAge + " 입니다.");
+    }
+          
+    
+  </script>
+  
+</body>
+</html>

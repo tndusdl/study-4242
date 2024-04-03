@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>홀수만 더하는 함수 문제</title>
+</head>
+<body>
+    <script>
+        function Numbers(arr) {
+            // 배열 내 홀수를 더할 변수 초기화
+            let sum = 0;
+
+            // 배열을 순회하면서 홀수를 찾아 더함
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i] % 2 !== 0) { // 홀수 판별
+                    sum += arr[i]; // 홀수인 경우 더함
+                }
+            }
+
+            return sum; // 홀수의 총합 반환
+        }
+
+        // 함수 호출과 출력: 주어진 배열에 있는 숫자들 중 홀수만을 더한 결과 출력
+        console.log(Numbers([1, 2, 3, 4, 5])); 
+    </script>
+</body>
+</html>
