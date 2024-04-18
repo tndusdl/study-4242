@@ -6,36 +6,22 @@
   <title>간단한 게시판</title>
   <style>
     table {
-      width: 70%;
-      border-collapse: collapse; /*테두리 셀 사이*/
+      width: 80%; /* 테이블 너비를 90%로 조정 */
+      border-collapse: collapse; 
     }
     th, td {
       text-align: left;
-      padding: 3px;
-
+      padding: 20px; /* 셀의 안쪽 여백을 10px로 조정 */
     }
     #name, #content {
-      width: 230px; 
-      padding: 3px; 
-    }  
-    #number {
-      width: 10px;
-      padding: 3px;
+      width: 30%; /* 입력란 너비를 95%로 조정 */
+      padding: 10px;
     }
-
-    #user {
-      width: 10px;
-      padding: 3px;
+    #number, #user, #date {
+      width: 15%; /* 각 셀 너비를 15%로 조정 */
     }
-     
     #post {
-      width: 100px;
-      padding: 3px;
-    }
-
-    #date {
-      width: 10px;
-      padding: 3px;
+        width: 50%;
     }
   </style>
 </head>
@@ -56,6 +42,7 @@
         <th id="user">작성자</th>
         <th id="post">내용</th>
         <th id="date">작성일</th>
+        <th id="actions">기능</th> 
       </tr>
     </thead>
     <tbody id="postBody">
@@ -77,15 +64,38 @@
       var cellName = newRow.insertCell(1);
       var cellContent = newRow.insertCell(2);
       var cellDate = newRow.insertCell(3);
+      var cellActions = newRow.insertCell(4); 
 
       cellNumber.textContent = table.rows.length;
       cellName.textContent = name;
       cellContent.textContent = content;
       cellDate.textContent = date;
+      cellActions.innerHTML = '<button onclick="deletePost(this)">삭제</button>' +
+                              '<button onclick="addComment(this)">댓글</button>'; 
 
       // 입력 필드 초기화
       document.getElementById("name").value = "";
       document.getElementById("content").value = "";
+    }
+
+    // 게시글 삭제 함수
+    function deletePost(button) {
+      var row = button.parentNode.parentNode; 
+      var index = row.rowIndex; 
+      document.getElementById("postTable").deleteRow(index); 
+    }
+
+    // 댓글 추가 함수
+    function addComment(button) {
+      var comment = prompt("댓글을 입력하세요:"); 
+      if (comment !== null && comment !== "") { 
+        var date = new Date().toLocaleString(); 
+        var row = button.parentNode.parentNode; 
+        var cellContent = row.cells[2]; 
+        var newComment = document.createElement("div");
+        newComment.textContent = comment + " - " + "작성 시간: " + date;
+        cellContent.appendChild(newComment); 
+      }
     }
   </script>
 </body>
