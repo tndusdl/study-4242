@@ -73,7 +73,7 @@
       cellActions.innerHTML = '<button onclick="deletePost(this)">삭제</button>' +
                               '<button onclick="addComment(this)">댓글</button>'; 
 
-      // 입력 필드 초기화
+      // 입력 필드 초기화하기
       document.getElementById("name").value = "";
       document.getElementById("content").value = "";
     }
@@ -85,7 +85,7 @@
       document.getElementById("postTable").deleteRow(index); 
     }
 
-    // 댓글 추가 함수
+    // 댓글 추가 함수 
     function addComment(button) {
       var comment = prompt("댓글을 입력하세요:"); 
       if (comment !== null && comment !== "") { 
