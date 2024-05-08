@@ -30,7 +30,7 @@
   <!-- 게시글을 작성하기 위한 입력 폼 -->
   <div>
     <input type="text" id="name" placeholder="작성자">
-    <input type="text" id="content" placeholder="내용">
+    <input type="text" id="content" placeholder="내용" onkeydown="if(event.keyCode === 13) addPost()">
     <button onclick="addPost()">게시</button>
   </div>
 
