@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>간단한 게시판</title>
+  <style>
+    table {
+      width: 80%;
+      border-collapse: collapse;
+    }
+    th, td {
+      text-align: left;
+      padding: 20px;
+    }
+    #name, #content {
+      width: 30%;
+      padding: 10px;
+    }
+    #number, #user, #date {
+      width: 15%;
+    }
+    #post {
+        width: 50%;
+    }
+  </style>
+</head>
+<body>
+  <h3>간단한 게시판</h3>
+  <!-- 게시글을 작성하기 위한 입력 폼 -->
+  <div>
+    <input type="text" id="name" placeholder="작성자">
+    <input type="text" id="content" placeholder="내용" onkeydown="if(event.keyCode === 13) addPost()">
+    <button onclick="addPost()">게시</button>
+  </div>
+
+  <!-- 버튼 추가: 저장, 불러오기, 게시판 비우기, 게시글 검색 -->
+  <div>
+    <button onclick="savePosts()">저장하기</button>
+    <button onclick="loadPosts()">불러오기</button>
+    <input type="file" id="fileBtn" style="display: none;">
+    <button onclick="clearBoard()">게시판 비우기</button>
+    <input type="text" id="searchInput" placeholder="검색어 입력">
+    <button onclick="searchPosts()">검색</button>
+    <button onclick="resetSearch()">검색 해제</button>
+  </div>
+
+  <!-- 게시글을 표시할 테이블 -->
+  <table id="postTable" border="1">
+    <thead>
+      <tr>
+        <th id="number">번호</th>
+        <th id="user">작성자</th>
+        <th id="post">내용</th>
+        <th id="date">작성일</th>
+        <th id="actions">기능</th> 
+      </tr>
+    </thead>
+    <tbody id="postBody">
+      <!-- 새로운 게시글 추가 -->
+    </tbody>
+  </table>
+
+  <script>
+    // 게시글을 저장할 배열
+    var posts = [];
+
+    // 새로운 게시글을 추가하는 함수
+    function addPost() {
+      var name = document.getElementById("name").value;
+      var content = document.getElementById("content").value;
+      var date = new Date().toLocaleString();
+
+      // 테이블의 tbody에 새로운 행을 추가하여 게시글 표시
+      var table = document.getElementById("postBody");
+      var newRow = table.insertRow();
+      var cellNumber = newRow.insertCell(0);
+      var cellName = newRow.insertCell(1);
+      var cellContent = newRow.insertCell(2);
+      var cellDate = newRow.insertCell(3);
+      var cellActions = newRow.insertCell(4); 
+
+      cellNumber.textContent = table.rows.length;
+      cellName.textContent = name;
+      cellContent.textContent = content;
+      cellDate.textContent = date;
+      cellActions.innerHTML = '<button onclick="deletePost(this)">삭제</button>' +
+                              '<button onclick="addComment(this)">댓글</button>'; 
+
+      // 입력 필드 초기화
+      document.getElementById("name").value = "";
+      document.getElementById("content").value = "";
+
+      // 게시글을 배열에 추가
+      posts.push({
+        number: table.rows.length,
+        user: name,
+        post: content,
+        date: date
+      });
+    }
+
+    // 게시글 삭제 함수
+    function deletePost(button) {
+      var row = button.parentNode.parentNode; 
+      var index = row.rowIndex; 
+      document.getElementById("postTable").deleteRow(index); 
+    }
+
+    // 댓글 추가 함수
+    function addComment(button) {
+      var comment = prompt("댓글을 입력하세요:"); 
+      if (comment !== null && comment !== "") { 
+        var date = new Date().toLocaleString(); 
+        var row = button.parentNode.parentNode; 
+        var cellContent = row.cells[2]; 
+        var newComment = document.createElement("div");
+        newComment.textContent = comment + " - " + "작성 시간: " + date;
+        cellContent.appendChild(newComment); 
+      }
+    }
+
+    // 게시글을 JSON 파일로 저장하는 함수
+    function savePosts() {
+      if (posts.length === 0) {
+        alert('저장할 데이터가 없습니다.');
+        return;
+      }
+      var jsonString = JSON.stringify(posts, null, 4);
+      var filename = 'posts.json';
+      downloadText(jsonString, filename);
+    }
+
+    // 다운로드 함수
+    function downloadText(text, filename) {
+      var element = document.createElement('a');
+      element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+      element.setAttribute('download', filename);
+      element.style.display = 'none';
+      document.body.appendChild(element);
+      element.click();
+      document.body.removeChild(element);
+    }
+
+    // 게시판 비우기 함수
+    function clearBoard() {
+      var table = document.getElementById("postTable");
+      var rowCount = table.rows.length;
+      for (var i = rowCount - 1; i > 0; i--) {
+        table.deleteRow(i);
+      }
+      posts = []; // 배열 초기화
+    }
+
+    // 불러오기 함수
+    const fileInput = document.getElementById('fileBtn');
+    fileInput.addEventListener('change', function (e) {
+      const file = e.target.files[0];
+      const fr = new FileReader();
+      fr.onload = () => {
+        var fileContent = fr.result;
+        var jsonObj = JSON.parse(fileContent);
+        posts = jsonObj; 
+        displayPosts(); // 게시글 표시 함수 호출
+      };
+      fr.readAsText(file);
+    });
+
+    // 게시글 표시 함수
+    function displayPosts() {
+      var table = document.getElementById("postBody");
+      table.innerHTML = ""; // 기존 게시글 삭제
+
+      posts.forEach(function(post, index) {
+        var newRow = table.insertRow();
+        newRow.innerHTML = "<td>" + (index + 1) + "</td>" +
+                           "<td>" + post.user + "</td>" +
+                           "<td>" + post.post + "</td>" +
+                           "<td>" + post.date + "</td>" +
+                           '<td><button onclick="deletePost(this)">삭제</button>' +
+                           '<button onclick="addComment(this)">댓글</button></td>';
+      });
+    }
+
+    // 불러오기 함수 호출
+    function loadPosts() {
+      document.getElementById('fileBtn').click();
+    }
+
+    // 게시글 검색 함수
+    function searchPosts() {
+      var searchText = document.getElementById('searchInput').value.trim().toLowerCase();
+      var table = document.getElementById('postTable');
+      var rows = table.getElementsByTagName('tr');
+      for (var i = 1; i < rows.length; i++) {
+        var row = rows[i];
+        var cells = row.getElementsByTagName('td');
+        var found = false;
+        for (var j = 1; j < cells.length - 1; j++) { // Skip the last cell with buttons
+          var cellText = cells[j].textContent.toLowerCase();
+          if (cellText.includes(searchText)) {
+            found = true;
+            break;
+          }
+        }
+        if (found) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      }
+    }
+
+    // 검색 해제 함수
+    function resetSearch() {
+      var table = document.getElementById('postTable');
+      var rows = table.getElementsByTagName('tr');
+      for (var i = 1; i < rows.length; i++) {
+        rows[i].style.display = ''; // Show all rows
+      }
+    }
+  </script>
+</body>
+</html>
