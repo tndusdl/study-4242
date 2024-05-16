@@ -216,7 +216,7 @@
       var table = document.getElementById('postTable');
       var rows = table.getElementsByTagName('tr');
       for (var i = 1; i < rows.length; i++) {
-        rows[i].style.display = ''; // Show all rows
+        rows[i].style.display = ''; 
       }
     }
   </script>
